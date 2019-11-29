@@ -17,7 +17,7 @@ module.exports = class {
   async data() {
     const rawFilepath = path.join(__dirname, `../_includes/assets/main.scss`);
     return {
-      permalink: "css/styles.css",
+      permalink: "styles.css",
       rawFilepath
     };
   }

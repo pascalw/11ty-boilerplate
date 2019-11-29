@@ -5,8 +5,9 @@
   "main": "index.js",
   "license": "MIT",
   "scripts": {
-    "build": "ELEVENTY_ENV=production yarn eleventy",
-    "start": "ELEVENTY_ENV=development yarn eleventy --serve"
+    "build": "rm -rf ./_site/ && yarn --silent build:css && ELEVENTY_ENV=production CACHE_BUST=true eleventy",
+    "build:css": "ELEVENTY_ENV=production eleventy --input ./styles.11ty.js",
+    "start": "ELEVENTY_ENV=development eleventy --serve"
   },
   "browserslist": [
     "defaults"

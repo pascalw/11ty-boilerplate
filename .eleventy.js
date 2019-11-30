@@ -11,7 +11,19 @@ const webpackAsset = async name => {
   return manifest[name];
 };
 
+const webpackAssetContents = async name => {
+  const assetName = await webpackAsset(name);
+  const filePath = path.resolve(__dirname, "_site", assetName);
+
+  return readFile(filePath);
+};
+
 module.exports = eleventyConfig => {
   eleventyConfig.setUseGitIgnore(false);
+
   eleventyConfig.addLiquidShortcode("webpackAsset", webpackAsset);
+  eleventyConfig.addLiquidShortcode(
+    "webpackAssetContents",
+    webpackAssetContents
+  );
 };

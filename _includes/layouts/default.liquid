@@ -9,10 +9,10 @@
       content="{{ renderData.description or description or metadata.description }}"
     />
     <title>{{ renderData.title or title or metadata.title }}</title>
-    <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="{% webpackAsset "styles.css" %}" />
   </head>
-
   <body>
     {{ content }}
+    <script src="{% webpackAsset "main.js" %}"></script>
   </body>
 </html>

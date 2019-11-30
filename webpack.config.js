@@ -29,7 +29,8 @@ const postcssLoader = {
 module.exports = {
   mode: isProd ? "production" : "development",
   entry: {
-    styles: path.resolve(__dirname, "_assets", "scss", "main.scss"),
+    main: path.resolve(__dirname, "_assets", "main.js"),
+    styles: path.resolve(__dirname, "_assets", "scss", "main.scss")
   },
   output: {
     path: out,
@@ -38,6 +39,16 @@ module.exports = {
   },
   module: {
     rules: [
+      {
+        test: /\.js$/,
+        exclude: exclusions,
+        use: {
+          loader: "babel-loader",
+          options: {
+            presets: ["@babel/preset-env"]
+          }
+        }
+      },
       {
         test: /\.scss$/,
         exclude: exclusions,

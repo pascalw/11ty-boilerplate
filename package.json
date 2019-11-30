@@ -6,12 +6,12 @@
   "license": "MIT",
   "scripts": {
     "clean": "rimraf ./_site",
-    "build": "run-s clean build:**",
-    "build:webpack": "cross-env NODE_ENV=production webpack",
-    "build:eleventy": "cross-env ELEVENTY_ENV=production eleventy",
-    "start": "run-p -c -s clean start:**",
-    "start:webpack": "cross-env NODE_ENV=development webpack -w",
-    "start:eleventy": "cross-env ELEVENTY_ENV=development eleventy --serve",
+    "build": "cross-env NODE_ENV=production ELEVENTY_ENV=production run-s clean build:*",
+    "build:webpack": "webpack",
+    "build:eleventy": "eleventy",
+    "start": "cross-env NODE_ENV=development ELEVENTY_ENV=development npm-run-all clean build:webpack --parallel start:*",
+    "start:webpack": "webpack -w",
+    "start:eleventy": "eleventy --serve",
     "prettier": "prettier '{_assets/**/*.{js,scss},*.js,*.html,_includes/**/*.html}'"
   },
   "browserslist": [

@@ -16,7 +16,7 @@ const optimization = {
   noEmitOnErrors: !isProd
 };
 
-const filenamePattern = (name) => isProd ? `${name}.[hash]` : name;
+const filenamePattern = name => (isProd ? `${name}.[hash]` : name);
 const chunkFileNamePattern = isProd ? "[id].[hash]" : "[id]";
 
 const postcssLoader = {
@@ -54,13 +54,13 @@ module.exports = {
         exclude: exclusions,
         use: [
           {
-            loader: MiniCssExtractPlugin.loader,
+            loader: MiniCssExtractPlugin.loader
           },
           "css-loader",
           postcssLoader,
           "sass-loader"
-        ],
-      },
+        ]
+      }
     ]
   },
   devtool: isProd ? "source-map" : "eval",

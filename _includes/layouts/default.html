@@ -8,7 +8,9 @@
       name="description"
       content="{{ renderData.description or description or metadata.description }}"
     />
-    <title>{{ renderData.title or title or metadata.title }}</title>
+    <title>
+      {{ site.title or renderData.title or title or metadata.title }}
+    </title>
     <link rel="stylesheet" href="{% webpackAsset 'styles.css' %}" />
   </head>
   <body>

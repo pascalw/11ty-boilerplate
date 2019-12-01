@@ -2,6 +2,7 @@ const fs = require("fs");
 const path = require("path");
 const util = require("util");
 const readFile = util.promisify(fs.readFile);
+const prettier = require("prettier");
 
 const webpackAsset = async name => {
   const manifestData = await readFile(
@@ -26,4 +27,12 @@ module.exports = eleventyConfig => {
     "webpackAssetContents",
     webpackAssetContents
   );
+
+  eleventyConfig.addTransform("html_prettier", (content, outputPath) => {
+    if (outputPath.endsWith(".html")) {
+      return prettier.format(content, { parser: "html" });
+    }
+
+    return content;
+  });
 };

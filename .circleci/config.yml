@@ -16,5 +16,14 @@ jobs:
           root: .
           paths: [_site/]
 
+  deploy:
+    executor:
+      name: node/default
+      tag: '12'
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run: ls /tmp/workspace
+
 orbs:
   node: circleci/node@1.1

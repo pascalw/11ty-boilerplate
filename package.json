@@ -12,9 +12,10 @@
     "start": "cross-env NODE_ENV=development ELEVENTY_ENV=development npm-run-all clean build:webpack --parallel start:*",
     "start:webpack": "webpack -w",
     "start:eleventy": "eleventy --serve",
-    "prettier": "prettier '{_assets/**/*.{js,scss},*.js,*.html,_includes/**/*.html}'",
+    "prettier": "prettier '{_assets/**/*.{js,scss},_data/**/*.{js,json},*.js,*.html,_includes/**/*.html}'",
     "stylelint": "stylelint '_assets/scss/**/*.scss'",
-    "lint": "run-s 'prettier --check' stylelint",
+    "eslint": "eslint _assets/ _data/",
+    "lint": "run-s eslint stylelint",
     "test": "run-s lint"
   },
   "browserslist": [
@@ -28,6 +29,9 @@
     "babel-loader": "^8.0.6",
     "cross-env": "^6.0.3",
     "css-loader": "^3.2.0",
+    "eslint": "^6.7.2",
+    "eslint-plugin-compat": "^3.3.0",
+    "eslint-plugin-prettier": "^3.1.1",
     "file-loader": "^5.0.2",
     "husky": "^3.1.0",
     "lint-staged": "^9.5.0",
@@ -48,7 +52,7 @@
     "webpack-manifest-plugin": "^2.2.0"
   },
   "lint-staged": {
-    "*.{js,jsx,html,scss}": [
+    "*.{js,json,html,scss}": [
       "prettier --write",
       "git add"
     ],

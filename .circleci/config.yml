@@ -12,6 +12,9 @@ jobs:
             - run: yarn install
       - run: yarn test
       - run: yarn build
+      - persist_to_workspace:
+          root: .
+          paths: [_site/]
 
 orbs:
   node: circleci/node@1.1

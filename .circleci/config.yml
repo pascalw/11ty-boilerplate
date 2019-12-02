@@ -23,7 +23,26 @@ jobs:
     steps:
       - attach_workspace:
           at: /tmp/workspace
-      - run: ls /tmp/workspace
+      - add_ssh_keys:
+          fingerprints:
+            - "49:64:81:21:1f:23:76:37:30:f5:d5:18:2b:3a:28:8a"
+      - run: cd /tmp/workspace/_site
+      - run:
+          name: Init repo
+          command: |
+            git init
+            git config user.email "deployer@circle-ci"
+            git config user.name "Deployer"
+      - run:
+          name: Commit
+          command: |
+            git add .
+            git commit -m "Deploy"
+      - run:
+          name: Push
+          command: |
+            git remote add origin $CIRCLE_REPOSITORY_URL
+            git push -f origin HEAD:gh-pages
 
 workflows:
   version: 2

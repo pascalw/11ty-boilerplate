@@ -13,7 +13,9 @@
     "start:webpack": "webpack -w",
     "start:eleventy": "eleventy --serve",
     "prettier": "prettier '{_assets/**/*.{js,scss},*.js,*.html,_includes/**/*.html}'",
-    "stylelint": "stylelint '_assets/scss/**/*.scss'"
+    "stylelint": "stylelint '_assets/scss/**/*.scss'",
+    "lint": "run-s 'prettier --check' stylelint",
+    "test": "run-s lint"
   },
   "browserslist": [
     "defaults"

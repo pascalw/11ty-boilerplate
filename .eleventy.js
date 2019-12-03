@@ -19,6 +19,7 @@ const webpackAssetContents = async name => {
 };
 
 module.exports = eleventyConfig => {
+  eleventyConfig.setTemplateFormats("html");
   eleventyConfig.setUseGitIgnore(false);
 
   eleventyConfig.addLiquidShortcode("webpackAsset", webpackAsset);
